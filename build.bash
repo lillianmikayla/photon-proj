@@ -13,7 +13,7 @@ mkdir -p "$BIN_DIR"
 
 # Compile Java files
 echo "Compiling Java files..."
-javac -cp "$CLASSPATH" -d "$BIN_DIR" $(find "$SRC_DIR" -name "*.java")
+javac -Xlint:all -cp "$CLASSPATH" -d "$BIN_DIR" $(find "$SRC_DIR" -name "*.java")
 
 # Check for compilation errors
 if [ $? -ne 0 ]; then
