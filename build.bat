@@ -1,26 +1,30 @@
 @echo off
-setlocal enabledelayedexpansion
 
-:: Directories
+REM Directories
 set SRC_DIR=src
 set BIN_DIR=bin
 set LIB_DIR=lib
 
-:: Create bin directory if it doesn't exist
-if not exist %BIN_DIR% mkdir %BIN_DIR%
-
-:: Classpath (include all JARs except -sources.jar, -javadoc.jar, and -natives.jar)
+REM Classpath: Include all JARs except -sources.jar, -javadoc.jar, and -natives.jar
+setlocal enabledelayedexpansion
 set CLASSPATH=%BIN_DIR%
-for %%F in (%LIB_DIR%\*.jar) do (
-    echo %%F | findstr /s /i "-sources.jar -javadoc.jar -natives.jar" >nul || set CLASSPATH=!CLASSPATH!;%%F
+for %%f in (%LIB_DIR%\*.jar) do (
+    if not "%%~nf"=="*-sources" if not "%%~nf"=="*-javadoc" if not "%%~nf"=="*-natives" (
+        set CLASSPATH=!CLASSPATH!;%%f
+    )
 )
 
-:: Compile Java files
+REM Create bin directory if it doesn't exist
+if not exist "%BIN_DIR%" mkdir "%BIN_DIR%"
+
+REM Compile Java files
 echo Compiling Java files...
-javac -Xlint:all -cp "%CLASSPATH%" -d %BIN_DIR% %SRC_DIR%\*.java
-if %ERRORLEVEL% neq 0 (
+javac -Xlint:all -cp "%CLASSPATH%" -d "%BIN_DIR%" %SRC_DIR%\*.java
+
+REM Check for compilation errors
+if %errorlevel% neq 0 (
     echo Compilation failed!
-    exit /b %ERRORLEVEL%
+    exit /b 1
 )
 
 echo Compilation successful!
