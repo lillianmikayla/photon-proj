@@ -1,0 +1,41 @@
+{
+  "build": "release",
+  "mode": "zip",
+  "selectedAddons": [],
+  "platform": [
+    "linux",
+    "linux-arm64",
+    "linux-arm32",
+    "macos",
+    "macos-arm64",
+    "windows",
+    "windows-x86",
+    "windows-arm64",
+    "linux-ppc64le",
+    "linux-riscv64"
+  ],
+  "descriptions": true,
+  "compact": false,
+  "hardcoded": false,
+  "javadoc": true,
+  "includeJSON": true,
+  "source": true,
+  "osgi": false,
+  "language": "groovy",
+  "contents": [
+    "lwjgl",
+    "lwjgl-assimp",
+    "lwjgl-bgfx",
+    "lwjgl-fmod",
+    "lwjgl-glfw",
+    "lwjgl-nanovg",
+    "lwjgl-nuklear",
+    "lwjgl-openal",
+    "lwjgl-opengl",
+    "lwjgl-par",
+    "lwjgl-stb",
+    "lwjgl-vulkan"
+  ],
+  "version": "3.3.6",
+  "versionLatest": "3.3.6"
+}
